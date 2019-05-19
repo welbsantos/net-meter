@@ -1,12 +1,15 @@
 const electron = require('electron');
 const { app, Tray, Menu, BrowserWindow } = electron;
-const path = require('path');
-const iconPath = path.join(__dirname, 'iconTemplate@3x.png');
-let appIcon = null;
+//const path = require('path');
+//const iconPath = path.join(__dirname, 'iconTemplate@3x.png');
+//let appIcon = null;
 let win = null;
+const netstat = require('./netstat');
 
 app.on('ready', () => {
-    win = new BrowserWindow({show: false});
+    win = new BrowserWindow({show: true});
+    console.log(netstat.getStatistics());
+/*
     appIcon = new Tray(iconPath);
     var contextMenu = Menu.buildFromTemplate([
         {
@@ -33,7 +36,7 @@ app.on('ready', () => {
     ]);
     appIcon.setToolTip('net-meter');
     appIcon.setContextMenu(contextMenu);
-    
+*/    
 });
 
 app.on('quit', () => {
