@@ -2,7 +2,7 @@
   "name": "project1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
     "electron-toolkit": "electron ./node_modules/electron-toolkit",
