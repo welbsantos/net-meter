@@ -98,9 +98,7 @@ ipcMain.on('statistics-updated', (event, statistics) => {
  
   tray.setTitle(`⬇ ${message_in} MB/s ⬆ ${message_out} MB/s`)
 
-  // Show summary and last refresh time as hover tooltip
-  //const time = new Date(weather.currently.time).toLocaleTimeString()
-  //tray.setToolTip(`${weather.currently.summary} at ${time}`)
+  tray.setToolTip('By Welb Santos')
 
 })
 
