@@ -1,5 +1,6 @@
 const {ipcRenderer, shell} = require('electron')
 const netstat = require ('./netstat')
+const utils = require ('./utils')
 
 let actual_stat = {
   bytes_in: 0,
@@ -17,11 +18,9 @@ let max_rate_bytes_in = 0
 let max_rate_bytes_out = 0
 
 const interval = 1 // in seconds
+const megabyte = 1024 * 1024
 
-let numberFormatter = new Intl.NumberFormat(undefined, {
-  style: undefined,
-  currency: undefined,
-});
+let numberFormatter = utils.numberFormatter
 
 document.addEventListener('click', (event) => {
   if (event.target.href) {
@@ -70,9 +69,11 @@ const updateStatistics = () => {
     rate_bytes_in: rate_bytes_in,
     rate_bytes_out: rate_bytes_out,
     max_rate_bytes_in: max_rate_bytes_in,
-    max_rate_bytes_out: max_rate_bytes_out
+    max_rate_bytes_out: max_rate_bytes_out,
+    rate_megabytes_in: Math.round(rate_bytes_in / megabyte),
+    rate_megabytes_out: Math.round(rate_bytes_out / megabyte)
   }
-
+  ipcRenderer.send('statistics-updated', statistics)
   updateView(statistics)
 }
 

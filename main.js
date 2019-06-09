@@ -1,5 +1,6 @@
 const {app, BrowserWindow, ipcMain, Tray} = require('electron')
 const path = require('path')
+const utils = require('./utils')
 
 const assetsDirectory = path.join(__dirname, 'assets')
 
@@ -20,7 +21,7 @@ app.on('window-all-closed', () => {
 })
 
 const createTray = () => {
-  tray = new Tray(path.join(assetsDirectory, 'cloudTemplate@2x.png'))
+  tray = new Tray(path.join(assetsDirectory, 'iconTemplate@3x.png'))
   tray.on('right-click', toggleWindow)
   tray.on('double-click', toggleWindow)
   tray.on('click', function (event) {
@@ -88,5 +89,18 @@ const showWindow = () => {
 
 ipcMain.on('show-window', () => {
   showWindow()
+})
+
+ipcMain.on('statistics-updated', (event, statistics) => {
+  
+  let message_in = utils.numberFormatter.format(statistics.rate_megabytes_in)
+  let message_out = utils.numberFormatter.format(statistics.rate_megabytes_out)
+ 
+  tray.setTitle(`⬇ ${message_in} MB/s ⬆ ${message_out} MB/s`)
+
+  // Show summary and last refresh time as hover tooltip
+  //const time = new Date(weather.currently.time).toLocaleTimeString()
+  //tray.setToolTip(`${weather.currently.summary} at ${time}`)
+
 })
 
