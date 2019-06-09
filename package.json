@@ -1,18 +1,21 @@
 {
-  "name": "project1",
+  "name": "netmeter-app",
+  "productName": "Net meter app",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "electron-toolkit": "electron ./node_modules/electron-toolkit",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds"
   },
-  "author": "",
+  "author": "Welb Santos",
   "license": "ISC",
   "devDependencies": {
     "electron": "^2.0.8",
     "electron-builder": "^20.40.2",
+    "electron-packager": "^13.1.1",
     "electron-toolkit": "^1.0.24"
   }
 }
