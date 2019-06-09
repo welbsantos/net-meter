@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Weather</title>
+    <link rel="stylesheet" href="./vendor/css/photon.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="./index.css" media="screen" charset="utf-8">
+    <script charset="utf-8">require('./index')</script>
+  </head>
+  <body>
+    <div class="header-arrow"></div>
+    <div class="window">
+      <header class="toolbar toolbar-header">
+        <h1 class="title">Last update <span class="js-update-time"></span></h1>
+      </header>
+
+      <div class="window-content">
+        <div class="pane">
+
+          <div class="summary js-summary">Net Meter</div>
+
+      <div class="column">
+          <div class="reading js-net-meter-bytes-in">&nbsp;</div>
+          <div class="description">Bytes In</div>
+      </div>
+
+      <div class="column">
+          <div class="reading js-net-meter-bytes-out">&nbsp;</div>
+          <div class="description">Bytes Out</div>
+      </div>
+
+      <div class="column">
+        <div class="reading js-net-meter-bytes-in-rate">&nbsp;</div>
+        <div class="description">Bytes in rate</div>
+      </div>
+
+      <div class="column">
+        <div class="reading js-net-meter-bytes-out-rate">&nbsp;</div>
+        <div class="description">Bytes out rate</div>
+      </div>
+
+      <div class="column">
+        <div class="reading js-net-meter-max-bytes-in-rate">&nbsp;</div>
+        <div class="description">Bytes in rate</div>
+      </div>
+
+      <div class="column">
+        <div class="reading js-net-meter-max-bytes-out-rate">&nbsp;</div>
+        <div class="description">Bytes out rate</div>
+      </div>
+
+      </div>
+      </div>
+
+      <footer class="toolbar toolbar-footer">
+
+        <div class="footer-link">
+          Source code <a href="https://github.com/welbsantos/net-meter">Github</a>
+        </div>
+
+        <div class="toolbar-actions pull-right">
+          <div class="btn-group">
+            <button class="btn btn-default js-refresh-action">
+              <span class="icon icon-arrows-ccw js-refresh-action" title="Refresh"></span>
+            </button>
+
+            <button class="btn btn-default js-quit-action">
+              <span class="icon icon-cancel js-quit-action" title="Quit"></span>
+            </button>
+          </div>
+        </div>
+
+      </footer>
+    </div>
+  </body>
+</html>
