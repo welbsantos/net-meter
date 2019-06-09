@@ -18,6 +18,11 @@ let max_rate_bytes_out = 0
 
 const interval = 1 // in seconds
 
+let numberFormatter = new Intl.NumberFormat(undefined, {
+  style: undefined,
+  currency: undefined,
+});
+
 document.addEventListener('click', (event) => {
   if (event.target.href) {
     // Open links in external browser
@@ -39,6 +44,7 @@ const updateStatistics = () => {
 
   let rate_bytes_in
   let rate_bytes_out
+  let timestamp = new Date().toLocaleTimeString()
 
   if (previous_stat.bytes_in == 0) { 
     rate_bytes_in = 0 
@@ -56,7 +62,7 @@ const updateStatistics = () => {
   if (rate_bytes_out > max_rate_bytes_out) { max_rate_bytes_out = rate_bytes_out }
 
   statistics = {
-    timestamp: new Date().toLocaleTimeString(),
+    timestamp: timestamp,
     bytes_in: actual_stat.bytes_in,
     bytes_out: actual_stat.bytes_out,
     previous_bytes_in: previous_stat.bytes_in,
@@ -74,14 +80,14 @@ const updateView = (stat) => {
 
   document.querySelector('.js-update-time').textContent = stat.timestamp
   
-  document.querySelector('.js-net-meter-bytes-in').textContent = stat.bytes_in
-  document.querySelector('.js-net-meter-bytes-out').textContent = stat.bytes_out
+  document.querySelector('.js-net-meter-bytes-in').textContent = numberFormatter.format(stat.bytes_in)
+  document.querySelector('.js-net-meter-bytes-out').textContent = numberFormatter.format(stat.bytes_out)
 
-  document.querySelector('.js-net-meter-bytes-in-rate').textContent = stat.rate_bytes_in
-  document.querySelector('.js-net-meter-bytes-out-rate').textContent = stat.rate_bytes_out
+  document.querySelector('.js-net-meter-bytes-in-rate').textContent = numberFormatter.format(stat.rate_bytes_in)
+  document.querySelector('.js-net-meter-bytes-out-rate').textContent = numberFormatter.format(stat.rate_bytes_out)
 
-  document.querySelector('.js-net-meter-max-bytes-in-rate').textContent = stat.max_rate_bytes_in
-  document.querySelector('.js-net-meter-max-bytes-out-rate').textContent = stat.max_rate_bytes_out
+  document.querySelector('.js-net-meter-max-bytes-in-rate').textContent = numberFormatter.format(stat.max_rate_bytes_in)
+  document.querySelector('.js-net-meter-max-bytes-out-rate').textContent = numberFormatter.format(stat.max_rate_bytes_out)
   
 }
 
