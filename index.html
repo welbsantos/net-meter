@@ -11,8 +11,13 @@
     <div class="header-arrow"></div>
     <div class="window">
       <header class="toolbar toolbar-header">
-        <h1 class="title">Net meter - last update <span class="js-update-time"></span></h1>
+        <h1 class="title">Last update <span class="js-update-time"></span></h1>
       </header>
+
+      <div class="window-content">
+        <div class="pane">
+
+          <div class="summary js-summary">Net Meter</div>
 
       <div class="column">
           <div class="reading js-net-meter-bytes-in">&nbsp;</div>
@@ -24,10 +29,33 @@
           <div class="description">Bytes Out</div>
       </div>
 
+      <div class="column">
+        <div class="reading js-net-meter-bytes-in-rate">&nbsp;</div>
+        <div class="description">Bytes in rate</div>
+      </div>
+
+      <div class="column">
+        <div class="reading js-net-meter-bytes-out-rate">&nbsp;</div>
+        <div class="description">Bytes out rate</div>
+      </div>
+
+      <div class="column">
+        <div class="reading js-net-meter-max-bytes-in-rate">&nbsp;</div>
+        <div class="description">Bytes in rate</div>
+      </div>
+
+      <div class="column">
+        <div class="reading js-net-meter-max-bytes-out-rate">&nbsp;</div>
+        <div class="description">Bytes out rate</div>
+      </div>
+
+      </div>
+      </div>
+
       <footer class="toolbar toolbar-footer">
 
         <div class="footer-link">
-          Powered by <a href="https://darksky.net">Dark Sky</a>
+          Source code <a href="https://github.com/welbsantos/net-meter">Github</a>
         </div>
 
         <div class="toolbar-actions pull-right">
