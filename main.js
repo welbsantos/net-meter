@@ -93,10 +93,10 @@ ipcMain.on('show-window', () => {
 
 ipcMain.on('statistics-updated', (event, statistics) => {
   
-  let message_in = utils.numberFormatter.format(statistics.rate_megabytes_in)
-  let message_out = utils.numberFormatter.format(statistics.rate_megabytes_out)
+  let message_in = utils.numberFormatter.format(statistics.rate_kilobytes_in)
+  let message_out = utils.numberFormatter.format(statistics.rate_kilobytes_out)
  
-  tray.setTitle(`⬇ ${message_in} MB/s ⬆ ${message_out} MB/s`)
+  tray.setTitle(`⬇ ${message_in} KB/s ⬆ ${message_out} KB/s`)
 
   tray.setToolTip('By Welb Santos')
 
