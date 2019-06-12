@@ -21,4 +21,4 @@ npm start
 npm run package-mac
 ```
 
-![screenshot](https://cloud.githubusercontent.com/assets/671378/15033544/97011f38-1220-11e6-9611-1571063fe107.png)
+![screenshot](https://github.com/welbsantos/net-meter/blob/master/assets/Screen%20Shot%202019-06-11%20at%2022.03.49%20PM.png)
