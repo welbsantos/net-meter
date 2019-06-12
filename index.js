@@ -18,7 +18,8 @@ let max_rate_bytes_in = 0
 let max_rate_bytes_out = 0
 
 const interval = 1 // in seconds
-const megabyte = 1024 * 1024
+const kilobyte = 1024
+const megabyte = kilobyte * 1024
 
 let numberFormatter = utils.numberFormatter
 
@@ -70,6 +71,8 @@ const updateStatistics = () => {
     rate_bytes_out: rate_bytes_out,
     max_rate_bytes_in: max_rate_bytes_in,
     max_rate_bytes_out: max_rate_bytes_out,
+    rate_kilobytes_in: Math.round(rate_bytes_in / kilobyte),
+    rate_kilobytes_out: Math.round(rate_bytes_out / kilobyte),
     rate_megabytes_in: Math.round(rate_bytes_in / megabyte),
     rate_megabytes_out: Math.round(rate_bytes_out / megabyte)
   }
