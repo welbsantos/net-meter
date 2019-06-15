@@ -4,8 +4,6 @@ Mac OS app to monitor inbound and outbound network traffic using [Electron](http
 
 Built with [photon](http://photonkit.com).
 
-Uses the [Dark Sky API](https://darksky.net).
-
 ## Running
 
 ```sh
