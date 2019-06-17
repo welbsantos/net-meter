@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain, Tray} = require('electron')
+const {app, BrowserWindow, ipcMain, Tray, dialog} = require('electron')
 const path = require('path')
 const utils = require('./utils')
 
@@ -16,8 +16,22 @@ app.on('ready', () => {
 })
 
 // Quit the app when the window is closed
-app.on('window-all-closed', () => {
-  app.quit()
+ipcMain.on('window-all-closed', () => {
+
+  let options = {
+    type: "question",
+    buttons: ["Quit", "Cancel"],
+    message: "Quit net-meter ?"
+  }
+
+  function callback (response, checkboxChecked) {
+    if (response == 0) {
+      app.quit()
+    }
+  }
+
+  dialog.showMessageBox(null, options, callback)
+  
 })
 
 const createTray = () => {

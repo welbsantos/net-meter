@@ -31,7 +31,7 @@ document.addEventListener('click', (event) => {
   } else if (event.target.classList.contains('js-refresh-action')) {
     updateStatistics()
   } else if (event.target.classList.contains('js-quit-action')) {
-    window.close()
+    ipcRenderer.send('window-all-closed')
   }
 })
 
