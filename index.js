@@ -78,6 +78,7 @@ const updateStatistics = () => {
   }
   ipcRenderer.send('statistics-updated', statistics)
   updateView(statistics)
+  updateChart(statistics)
 }
 
 const updateView = (stat) => {
@@ -93,6 +94,17 @@ const updateView = (stat) => {
   document.querySelector('.js-net-meter-max-bytes-in-rate').textContent = numberFormatter.format(stat.max_rate_bytes_in)
   document.querySelector('.js-net-meter-max-bytes-out-rate').textContent = numberFormatter.format(stat.max_rate_bytes_out)
   
+}
+
+const updateChart = (statistics) => {
+
+  myChart.data.labels.push('')
+  
+  myChart.data.datasets[0].data.push (statistics.rate_bytes_in)  // Download dataset
+  myChart.data.datasets[1].data.push (statistics.rate_bytes_out) // Upload dataset
+
+  myChart.update()
+
 }
 
 // Refresh statistics
