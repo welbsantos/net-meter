@@ -5,7 +5,11 @@
     <title>Net Meter</title>
     <link rel="stylesheet" href="./vendor/css/photon.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="./index.css" media="screen" charset="utf-8">
+
+    <!-- Electron Javascript -->
     <script charset="utf-8">require('./index')</script>
+
+    <script charset="utf-8">require('chart.js')</script>
   </head>
   <body>
     <div class="header-arrow"></div>
@@ -15,41 +19,110 @@
       </header>
 
       <div class="window-content">
+
         <div class="pane">
 
           <div class="summary js-summary">Net Meter</div>
 
-      <div class="column">
-          <div class="reading js-net-meter-bytes-in">&nbsp;</div>
-          <div class="description">Bytes In</div>
+          <div>
+            <div class="column">
+                <div class="reading js-net-meter-bytes-in">&nbsp;</div>
+                <div class="description">Bytes In</div>
+            </div>
+
+            <div class="column">
+                <div class="reading js-net-meter-bytes-out">&nbsp;</div>
+                <div class="description">Bytes Out</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="column">
+              <div class="reading js-net-meter-bytes-in-rate">&nbsp;</div>
+              <div class="description">Bytes in/sec</div>
+            </div>
+
+            <div class="column">
+              <div class="reading js-net-meter-bytes-out-rate">&nbsp;</div>
+              <div class="description">Bytes out/sec</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="column">
+              <div class="reading js-net-meter-max-bytes-in-rate">&nbsp;</div>
+              <div class="description">Max Bytes in/sec</div>
+            </div>
+
+            <div class="column">
+              <div class="reading js-net-meter-max-bytes-out-rate">&nbsp;</div>
+              <div class="description">Max Bytes out/sec</div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="column">
-          <div class="reading js-net-meter-bytes-out">&nbsp;</div>
-          <div class="description">Bytes Out</div>
-      </div>
+      <div class="window-content">
+        <div>
 
-      <div class="column">
-        <div class="reading js-net-meter-bytes-in-rate">&nbsp;</div>
-        <div class="description">Bytes in/sec</div>
-      </div>
+          <canvas id="myCanvas" width="300" height="200"></canvas>
+    
+          <script>
+              var ctx = document.getElementById("myCanvas").getContext('2d');
+              var myChart = new Chart(ctx, {
+                  type: 'line',
+                  data: {
+                      labels: [],
+                      datasets: [
+                        {
+                          label: 'Download',
+                          data: [],
+                          backgroundColor: [
+                              'rgba(255, 99, 132, 0.2)'
+                          ],
+                          borderColor: [
+                              'rgba(255, 99, 132, 1)'
+                          ],
+                          borderWidth: 1,
+                          pointRadius: 0,
+                          lineTension: 0
+                        },
+                        {
+                          label: 'Upload',
+                          data: [],
+                          backgroundColor: [
+                              'rgba(54, 162, 235, 0.2)'
+                          ],
+                          borderColor: [
+                              'rgba(54, 162, 235, 1)'
+                          ],
+                          borderWidth: 1,
+                          pointRadius: 0,
+                          lineTension: 0
+                        }
+                      ]
+                  },
+                  options: {
+                      scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display:false
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                display:true
+                            }   
+                        }]
+                      }
 
-      <div class="column">
-        <div class="reading js-net-meter-bytes-out-rate">&nbsp;</div>
-        <div class="description">Bytes out/sec</div>
-      </div>
+                  }
+              });
+          </script>
 
-      <div class="column">
-        <div class="reading js-net-meter-max-bytes-in-rate">&nbsp;</div>
-        <div class="description">Max Bytes in/sec</div>
-      </div>
-
-      <div class="column">
-        <div class="reading js-net-meter-max-bytes-out-rate">&nbsp;</div>
-        <div class="description">Max Bytes out/sec</div>
-      </div>
-
-      </div>
+        </div>
       </div>
 
       <footer class="toolbar toolbar-footer">

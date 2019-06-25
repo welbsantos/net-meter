@@ -23,6 +23,8 @@ const megabyte = kilobyte * 1024
 
 let numberFormatter = utils.numberFormatter
 
+const MAX_CHART_POINTS = 60
+
 document.addEventListener('click', (event) => {
   if (event.target.href) {
     // Open links in external browser
@@ -78,6 +80,7 @@ const updateStatistics = () => {
   }
   ipcRenderer.send('statistics-updated', statistics)
   updateView(statistics)
+  updateChart(statistics)
 }
 
 const updateView = (stat) => {
@@ -93,6 +96,29 @@ const updateView = (stat) => {
   document.querySelector('.js-net-meter-max-bytes-in-rate').textContent = numberFormatter.format(stat.max_rate_bytes_in)
   document.querySelector('.js-net-meter-max-bytes-out-rate').textContent = numberFormatter.format(stat.max_rate_bytes_out)
   
+}
+
+const updateChart = (statistics) => {
+
+  if(myChart.data.labels.length == 0) {
+    myChart.data.labels = new Array(MAX_CHART_POINTS).fill('')
+    myChart.data.datasets[0].data = new Array(MAX_CHART_POINTS).fill(0)
+    myChart.data.datasets[1].data = new Array(MAX_CHART_POINTS).fill(0)
+  }
+
+  if (myChart.data.labels.length > MAX_CHART_POINTS) {
+    myChart.data.labels.shift()
+    myChart.data.datasets[0].data.shift()
+    myChart.data.datasets[1].data.shift()
+  } 
+
+  myChart.data.labels.push('')
+  
+  myChart.data.datasets[0].data.push (statistics.rate_bytes_in)  // Download dataset
+  myChart.data.datasets[1].data.push (statistics.rate_bytes_out) // Upload dataset
+
+  myChart.update()
+
 }
 
 // Refresh statistics

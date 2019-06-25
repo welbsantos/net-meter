@@ -1,6 +1,8 @@
 const {app, BrowserWindow, ipcMain, Tray, dialog} = require('electron')
 const path = require('path')
 const utils = require('./utils')
+const fs = require('fs');
+const text2png = require('text2png');
 
 const assetsDirectory = path.join(__dirname, 'assets')
 
@@ -64,7 +66,7 @@ const getWindowPosition = () => {
 const createWindow = () => {
   window = new BrowserWindow({
     width: 300,
-    height: 450,
+    height: 550,
     show: false,
     frame: false,
     fullscreenable: false,
@@ -110,9 +112,9 @@ ipcMain.on('statistics-updated', (event, statistics) => {
   let message_in = utils.numberFormatter.format(statistics.rate_kilobytes_in)
   let message_out = utils.numberFormatter.format(statistics.rate_kilobytes_out)
  
-  tray.setTitle(`⬇ ${message_in} KB/s ⬆ ${message_out} KB/s`)
+  fs.writeFileSync('out.png', text2png(`⬇ ${message_in} KB/s\n⬆ ${message_out} KB/s`, {color:'blue', font: '12px sans-serif'}));
 
-  tray.setToolTip('By Welb Santos')
+  tray.setImage('out.png')
 
 })
 

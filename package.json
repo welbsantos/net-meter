@@ -16,6 +16,11 @@
     "electron": "^2.0.8",
     "electron-builder": "^20.40.2",
     "electron-packager": "^13.1.1",
+    "electron-rebuild": "^1.8.5",
     "electron-toolkit": "^1.0.24"
+  },
+  "dependencies": {
+    "chart.js": "^2.8.0",
+    "text2png": "^2.1.0"
   }
 }
