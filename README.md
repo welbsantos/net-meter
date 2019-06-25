@@ -19,4 +19,4 @@ npm start
 npm run package-mac
 ```
 
-![screenshot](https://github.com/welbsantos/net-meter/blob/master/assets/Screen%20Shot%202019-06-11%20at%2022.03.49%20PM.png)
+![screenshot](https://github.com/welbsantos/net-meter/blob/master/assets/Screen%20Shot%202019-06-25%20at%2001.45.48%20AM.png)
