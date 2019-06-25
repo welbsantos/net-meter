@@ -66,7 +66,7 @@ const getWindowPosition = () => {
 const createWindow = () => {
   window = new BrowserWindow({
     width: 300,
-    height: 850,
+    height: 550,
     show: false,
     frame: false,
     fullscreenable: false,
