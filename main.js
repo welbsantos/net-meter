@@ -1,4 +1,5 @@
 const {app, BrowserWindow, ipcMain, Tray, dialog} = require('electron')
+const electron = require('electron')
 const path = require('path')
 const utils = require('./utils')
 const fs = require('fs');
@@ -8,6 +9,8 @@ const assetsDirectory = path.join(__dirname, 'assets')
 
 let tray = undefined
 let window = undefined
+
+const tempDir =  (electron.app || electron.remote.app).getPath('temp');
 
 // Don't show the app in the doc
 app.dock.hide()
@@ -112,9 +115,9 @@ ipcMain.on('statistics-updated', (event, statistics) => {
   let message_in = utils.numberFormatter.format(statistics.rate_kilobytes_in)
   let message_out = utils.numberFormatter.format(statistics.rate_kilobytes_out)
  
-  fs.writeFileSync('out.png', text2png(`⬇ ${message_in} KB/s\n⬆ ${message_out} KB/s`, {color:'blue', font: '12px sans-serif'}));
+  fs.writeFileSync(tempDir + 'out.png', text2png(`⬇ ${message_in} KB/s\n⬆ ${message_out} KB/s`, {color:'blue', font: '12px sans-serif'}));
 
-  tray.setImage('out.png')
+  tray.setImage(tempDir + 'out.png')
 
 })
 
