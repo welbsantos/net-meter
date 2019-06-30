@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain, Tray, dialog} = require('electron')
+const {app, BrowserWindow, ipcMain, Tray, dialog, systemPreferences} = require('electron')
 const electron = require('electron')
 const path = require('path')
 const utils = require('./utils')
@@ -114,8 +114,15 @@ ipcMain.on('statistics-updated', (event, statistics) => {
   
   let message_in = utils.numberFormatter.format(statistics.rate_kilobytes_in)
   let message_out = utils.numberFormatter.format(statistics.rate_kilobytes_out)
- 
-  fs.writeFileSync(tempDir + 'out.png', text2png(`⬇ ${message_in} KB/s\n⬆ ${message_out} KB/s`, {color:'blue', font: '12px sans-serif'}));
+  let color;
+
+  if (systemPreferences.isDarkMode()) {
+    color = 'white'
+  } else {
+    color = 'black'
+  }
+
+  fs.writeFileSync(tempDir + 'out.png', text2png(`⬇ ${message_in} KB/s\n⬆ ${message_out} KB/s`, {color:`${color}`, font: '12px sans-serif'}));
 
   tray.setImage(tempDir + 'out.png')
 
