@@ -114,8 +114,8 @@ const updateChart = (statistics) => {
 
   myChart.data.labels.push('')
   
-  myChart.data.datasets[0].data.push (statistics.rate_bytes_in)  // Download dataset
-  myChart.data.datasets[1].data.push (statistics.rate_bytes_out) // Upload dataset
+  myChart.data.datasets[0].data.push (statistics.rate_kilobytes_in)  // Download dataset
+  myChart.data.datasets[1].data.push (statistics.rate_kilobytes_out) // Upload dataset
 
   myChart.update()
 

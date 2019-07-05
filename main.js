@@ -7,8 +7,7 @@ const text2png = require('text2png');
 
 const assetsDirectory = path.join(__dirname, 'assets')
 
-let tray = undefined
-let window = undefined
+const appIconPath = path.join(assetsDirectory, 'iconTemplate@3x.png')
 
 const tempDir =  (electron.app || electron.remote.app).getPath('temp');
 
@@ -26,7 +25,8 @@ ipcMain.on('window-all-closed', () => {
   let options = {
     type: "question",
     buttons: ["Quit", "Cancel"],
-    message: "Quit net-meter ?"
+    message: "Quit net-meter ?",
+    icon: appIconPath
   }
 
   function callback (response, checkboxChecked) {
@@ -40,7 +40,7 @@ ipcMain.on('window-all-closed', () => {
 })
 
 const createTray = () => {
-  tray = new Tray(path.join(assetsDirectory, 'iconTemplate@3x.png'))
+  tray = new Tray(appIconPath)
   tray.on('right-click', toggleWindow)
   tray.on('double-click', toggleWindow)
   tray.on('click', function (event) {
@@ -122,7 +122,15 @@ ipcMain.on('statistics-updated', (event, statistics) => {
     color = 'black'
   }
 
-  fs.writeFileSync(tempDir + 'out.png', text2png(`⬇ ${message_in} KB/s\n⬆ ${message_out} KB/s`, {color:`${color}`, font: '12px sans-serif'}));
+  let iconText = ` ${message_out} KB/s ⬆\n ${message_in} KB/s ⬇`
+
+  let iconTextOptions = {
+                          color:`${color}`, 
+                          font: '12px sans-serif', 
+                          textAlign: 'right'
+                        }
+
+  fs.writeFileSync(tempDir + 'out.png', text2png(iconText, iconTextOptions));
 
   tray.setImage(tempDir + 'out.png')
 
