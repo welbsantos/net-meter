@@ -67,7 +67,7 @@
       <div class="window-content">
         <div>
 
-          <canvas id="myCanvas" width="300" height="250"></canvas>
+          <canvas id="myCanvas" width="300" height="240"></canvas>
     
           <script>
               var ctx = document.getElementById("myCanvas").getContext('2d');
@@ -112,9 +112,12 @@
                             }
                         }],
                         yAxes: [{
-                            gridLines: {
-                                display:true
-                            }   
+                          ticks: {
+                            beginAtZero: true
+                          },
+                          gridLines: {
+                              display:true
+                          }   
                         }]
                       }
 
