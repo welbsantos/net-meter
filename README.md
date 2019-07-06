@@ -10,7 +10,7 @@ Built with:
 
 [ChartJS](https://www.chartjs.org)
 
-![screenshot](https://github.com/welbsantos/net-meter/blob/master/assets/Screen%20Shot%202019-06-25%20at%2001.45.48%20AM.png)
+![screenshot](https://github.com/welbsantos/net-meter/blob/master/assets/App%20Screenshot.png)
 
 
 ## Running
