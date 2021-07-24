@@ -20,7 +20,7 @@
     "electron-toolkit": "^1.0.24"
   },
   "dependencies": {
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "text2png": "^2.1.0"
   }
 }
